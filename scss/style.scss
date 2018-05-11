@@ -1,0 +1,214 @@
+$background: #D6E1E5;
+$subtle: #B6D1DA;
+$h1: #DB5B33;
+$h2: #4598B5;
+$body: #6B7072;
+$dark: #222;
+
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+body {
+  background-color: $background;
+  color: $body;
+  font-size: 100%;
+  margin-bottom: 10em;
+  @media only screen and (min-width: 700px) { font-size: 110%; }
+  @media only screen and (min-width: 800px) { font-size: 120%; }
+}
+
+h1, h2, p {   
+  padding: 0 50px;
+  line-height: 1.75;
+  @media only screen and (min-width: 800px) { padding: 0 100px; }
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+h1, h2 {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  font-size: 250%;
+  line-height: 1.5;
+}
+
+h1 {  
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  color: $h1;
+}
+
+h2 {  
+  margin-top: 2em;
+  margin-botttom: 1em;
+  color: $h2;
+}
+
+p {
+  font-family: 'Merriweather';
+  font-weight: 300;
+  font-size: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+a {
+  color: darken($body, 25%);
+  text-decoration: underline;
+  transition: color 100ms ease-in;
+  &:hover, &:focus {
+    color: $h1;
+  }
+}
+
+.progressbar { 
+	display: none;
+	@media only screen and (min-width: 650px) { display: block; }
+	margin: 4em 0;
+	
+  .shim {
+		display: none;
+		width: 100%;
+	}
+
+	.holder {
+	  position: relative;
+		font-size: 85%;
+		@media only screen and (min-width: 750px) { font-size: 90%; }
+    @media only screen and (min-width: 900px) { font-size: 95%; }
+    padding: 1.8em 0 0 0;
+		background-color: $background;
+    box-shadow: 0 .5em 1.5em $background;
+	
+    .bar {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: $subtle;
+	
+      .indicator {
+			  position: absolute;
+        top: 0;
+        left: 0;
+				height: 100%;
+				background-color: $h2;
+			}
+		
+    }
+		
+    .labels {
+		  max-width: 1280px;
+			margin: 0 auto;
+			padding: 0 2em;
+			text-align: center;
+		
+      i {
+        display: block;
+				position: relative;
+				float: left;
+				cursor: pointer;
+
+        &::before {
+					position: absolute;
+					bottom: 0;
+					left: 50%;
+					display: block;
+					content: '';
+					width: .9em;
+					height: .9em;
+					border-radius: 50%;
+					border: solid 3px $subtle;
+					background-color: $background;
+					transform: translateX(-50%) translateY(50%);
+					transition:
+						border-color 100ms ease-in,
+						background-color 150ms ease-in;
+				}
+	
+        &::after {
+					display: block;
+					content: attr(data-label);
+					position: relative;
+          top: 0;
+					padding-bottom: 1.8em;
+					font-family: 'Open Sans';
+          font-weight: 400;
+          color: $h2;
+					transition:
+            color 150ms ease-in,
+            top 100ms ease-out;
+				}
+	
+        &:hover, &:focus {
+					&::before {
+						background-color: $subtle;
+					}
+					&::after {
+						top: -.2em;
+					}
+				}
+				
+        &.read {
+					&::before {
+						border-color: $h2;
+					}
+          &:hover, &:focus {
+            &::before {
+              background-color: $h2;
+            }
+          }
+				}
+				
+        &.reading {
+					&::after {
+						color: $dark;
+					}
+          &:hover, &:focus {
+            &::after {
+              top: 0;
+            }
+          }
+				}
+        
+			}
+      
+    }
+    
+	}
+	
+	&.fixed {
+	
+    .holder {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 1;
+		}
+	
+    .shim {
+			display: block;
+		}	
+	
+  }
+	
+}
